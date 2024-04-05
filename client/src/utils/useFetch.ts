@@ -27,16 +27,19 @@ fetchApi.interceptors.request.use(
   }
 );
 
-interface IUseQueryProps {
-  key: string;
-}
+// interface IUseQueryProps {
+//   key: string;
+// }
 
-export const query = async ({ key }: IUseQueryProps) => {
+export const query = async <DATA>(key: string) => {
   try {
-    const result = await fetchApi.get(key);
+    const result = await fetchApi.get<DATA>(key);
     return result.data;
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.log("error", error);
+    alert(error?.response?.data.message || "");
+    throw new Error(error);
   }
 };
 
@@ -59,5 +62,6 @@ export const mutation = async <DATA>({
   } catch (error: any) {
     console.log("error", error);
     alert(error?.response?.data.message || "");
+    throw new Error(error);
   }
 };

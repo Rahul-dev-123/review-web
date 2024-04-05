@@ -12,9 +12,10 @@ const Login = () => {
 
     await mutation<{ token: string }>({
       method: "post",
-      key: "login",
+      key: "admin/login",
       data: loginForm,
     }).then((data) => {
+      console.log("data", data);
       localStorage.setItem("A_T", data?.token || "");
       alert("Login Successfully");
       navigate("/dashboard");

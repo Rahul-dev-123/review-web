@@ -1,4 +1,4 @@
-import AdminModal from "../models/admin.models.js";
+import AdminModal from "../models/admin.model.js";
 import { generateToken } from "../utils/token.js";
 
 export const loginController = async (req, res) => {

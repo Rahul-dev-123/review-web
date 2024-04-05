@@ -1,15 +1,14 @@
 import express from "express";
-import {
-  loginController,
-  signupController,
-} from "../controller/admin.controller.js";
+
+import adminRouter from "./admin.router.js";
+import clientRouter from "./client.router.js";
 
 const router = express.Router();
 
 router.get("/healthcheck", (_, res) => res.sendStatus(200));
 
-router.post("/signup", signupController);
+router.use("/admin", adminRouter);
 
-router.use("/login", loginController);
+router.use("/client", clientRouter);
 
 export default router;
